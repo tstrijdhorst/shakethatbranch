@@ -3,12 +3,11 @@
 namespace shakethatbranch\system;
 
 class ChildRepository {
-	const DATABASE_PATH = __DIR__.'/../../db.json';
+	const DATABASE_FILENAME = 'db.json';
+	private string $gitDirectory;
 	
-	public function __construct() {
-		if (!$this->databaseFileExists()) {
-			$this->initializeDatabase();
-		}
+	public function __construct(string $gitDirectory) {
+		$this->gitDirectory = $gitDirectory;
 	}
 	
 	public function addChild(string $parentBranchName, string $childBranchName): void {
@@ -53,20 +52,24 @@ class ChildRepository {
 		return in_array($childBranchName, $database[$parentBranchName]);
 	}
 	
+	public function initializeDatabase(): void {
+		file_put_contents($this->getDatabasePath(), json_encode([]));
+	}
+	
+	public function databaseFileExists(): bool {
+		return is_file($this->getDatabasePath());
+	}
+	
 	private function getDatabase(): array {
-		$json = file_get_contents(self::DATABASE_PATH);
+		$json = file_get_contents($this->getDatabasePath());
 		return json_decode($json, true);
 	}
 	
 	private function persistDatabase(array $database): void {
-		file_put_contents(self::DATABASE_PATH, json_encode($database));
+		file_put_contents($this->getDatabasePath(), json_encode($database));
 	}
 	
-	private function initializeDatabase(): void {
-		file_put_contents(self::DATABASE_PATH, json_encode([]));
-	}
-	
-	private function databaseFileExists(): bool {
-		return is_file(self::DATABASE_PATH);
+	private function getDatabasePath() {
+		return $this->gitDirectory.'/'.self::DATABASE_FILENAME;
 	}
 }

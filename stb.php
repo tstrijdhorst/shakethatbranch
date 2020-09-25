@@ -2,6 +2,7 @@
 
 use Cz\Git\GitRepository;
 use shakethatbranch\commands\AddChildCommand;
+use shakethatbranch\commands\InitCommand;
 use shakethatbranch\commands\ListChildrenCommand;
 use shakethatbranch\commands\MergeIntoChildrenCommand;
 use shakethatbranch\commands\PushChildren;
@@ -12,11 +13,12 @@ use Symfony\Component\Console\Application;
 require_once __DIR__.'/vendor/autoload.php';
 
 $gitRepository   = new GitRepository(__DIR__);
-$childRepository = new ChildRepository();
+$childRepository = new ChildRepository($gitRepository->getRepositoryPath());
 
 $application = new Application();
 $application->addCommands(
 	[
+		new InitCommand($gitRepository, $childRepository),
 		new AddChildCommand($gitRepository, $childRepository),
 		new RemoveChildCommand($gitRepository, $childRepository),
 		new ListChildrenCommand($gitRepository, $childRepository),
