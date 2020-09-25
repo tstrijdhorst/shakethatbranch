@@ -70,6 +70,6 @@ class ChildRepository {
 	}
 	
 	private function getDatabasePath() {
-		return $this->gitDirectory.'/'.self::DATABASE_FILENAME;
+		return $this->gitDirectory.'/.git/'.self::DATABASE_FILENAME;
 	}
 }
