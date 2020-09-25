@@ -36,7 +36,8 @@ class MergeIntoChildrenCommand extends Command {
 		$currentBranchName = $this->gitRepository->getCurrentBranchName();
 		
 		foreach($this->childRepository->findChildren($currentBranchName) as $childBranchName) {
-			$this->gitRepository->merge($childBranchName, ['--no-edit']);
+			$this->gitRepository->checkout($childBranchName);
+			$this->gitRepository->merge($currentBranchName);
 		}
 		
 		return Command::SUCCESS;
