@@ -4,6 +4,7 @@ namespace shakethatbranch\commands;
 
 use Cz\Git\IGit;
 use shakethatbranch\system\ChildRepository;
+use shakethatbranch\validators\ValidateDatabaseInitialized;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -35,8 +36,9 @@ class PushChildren extends Command {
 	}
 	
 	protected function execute(InputInterface $input, OutputInterface $output) {
-		$currentBranchName = $this->gitRepository->getCurrentBranchName();
-		$this->pushChildren($currentBranchName, $input->hasOption('recursive'));
+		ValidateDatabaseInitialized::create($this->childRepository)->validate();
+		
+		$this->pushChildren($this->gitRepository->getCurrentBranchName(), $input->hasOption('recursive'));
 		
 		return Command::SUCCESS;
 	}

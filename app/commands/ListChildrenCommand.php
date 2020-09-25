@@ -4,6 +4,7 @@ namespace shakethatbranch\commands;
 
 use Cz\Git\IGit;
 use shakethatbranch\system\ChildRepository;
+use shakethatbranch\validators\ValidateDatabaseInitialized;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -33,6 +34,8 @@ class ListChildrenCommand extends Command {
 	}
 	
 	protected function execute(InputInterface $input, OutputInterface $output) {
+		ValidateDatabaseInitialized::create($this->childRepository)->validate();
+		
 		$currentBranchName = $this->gitRepository->getCurrentBranchName();
 		
 		foreach ($this->childRepository->findChildren($currentBranchName) as $childBranchName) {

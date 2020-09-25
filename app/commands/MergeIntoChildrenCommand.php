@@ -4,6 +4,7 @@ namespace shakethatbranch\commands;
 
 use Cz\Git\IGit;
 use shakethatbranch\system\ChildRepository;
+use shakethatbranch\validators\ValidateDatabaseInitialized;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -47,6 +48,8 @@ class MergeIntoChildrenCommand extends Command {
 	 * @throws \Cz\Git\GitException
 	 */
 	protected function mergeChildren(string $currentBranchName, bool $recursive = false): void {
+		ValidateDatabaseInitialized::create($this->childRepository)->validate();
+		
 		try {
 			foreach ($this->childRepository->findChildren($currentBranchName) as $childBranchName) {
 				$this->gitRepository->checkout($childBranchName);
