@@ -25,12 +25,30 @@ class ChildRepository {
 		$this->persistDatabase($database);
 	}
 	
-	public function hasChild(string $parentBranchName, string $childBranchName): bool {
+	/**
+	 * @param string $parentBranchName
+	 * @return string[]
+	 */
+	public function findChildren(string $parentBranchName) : array {
+		if (!$this->hasAnyChildren($parentBranchName)) {
+			return [];
+		}
+		
+		return $this->getDatabase()[$parentBranchName];
+	}
+	
+	public function hasAnyChildren(string $parentBranchName) : bool {
 		$database = $this->getDatabase();
 		
-		if (!isset($database[$parentBranchName])) {
+		return isset($database[$parentBranchName]);
+	}
+	
+	public function hasChild(string $parentBranchName, string $childBranchName): bool {
+		if (!$this->hasAnyChildren($parentBranchName)) {
 			return false;
 		}
+		
+		$database = $this->getDatabase();
 		
 		return in_array($childBranchName, $database[$parentBranchName]);
 	}
