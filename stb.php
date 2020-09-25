@@ -2,6 +2,7 @@
 
 use Cz\Git\GitRepository;
 use shakethatbranch\commands\AddChildCommand;
+use shakethatbranch\commands\ListChildrenCommand;
 use shakethatbranch\commands\MergeIntoChildrenCommand;
 use shakethatbranch\commands\RemoveChildCommand;
 use shakethatbranch\system\ChildRepository;
@@ -17,6 +18,7 @@ $application->addCommands(
 	[
 		new AddChildCommand($gitRepository, $childRepository),
 		new RemoveChildCommand($gitRepository, $childRepository),
+		new ListChildrenCommand($gitRepository, $childRepository),
 		new MergeIntoChildrenCommand($gitRepository, $childRepository),
 	]
 );
