@@ -3,7 +3,13 @@
     "description": "Manage git branch hierarchies with ease",
     "type": "project",
     "require": {
-        "symfony/console": "^5.1"
+        "symfony/console": "^5.1",
+        "czproject/git-php": "^3.18"
+    },
+    "autoload": {
+        "psr-4": {
+            "shakethatbranch\\": "app/"
+        }
     },
     "license": "propietary",
     "authors": [
