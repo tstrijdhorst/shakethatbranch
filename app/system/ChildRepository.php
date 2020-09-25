@@ -11,23 +11,30 @@ class ChildRepository {
 		}
 	}
 	
-	public function addChild($branchName) : void {
+	public function addChild(string $parentBranchName, string $childBranchName): void {
 		$database = $this->getDatabase();
 		
-		$database[$branchName]['children'][] = $branchName;
+		$database[$parentBranchName][] = $childBranchName;
 		
 		$this->persistDatabase($database);
 	}
 	
-	private function getDatabase() : array {
+	public function hasChild(string $parentBranchName, string $childBranchName): bool {
+		$database = $this->getDatabase();
+		
+		if (!isset($database[$parentBranchName])) {
+			return false;
+		}
+		
+		return in_array($childBranchName, $database[$parentBranchName]);
+	}
+	
+	private function getDatabase(): array {
 		$json = file_get_contents(self::DATABASE_PATH);
 		return json_decode($json, true);
 	}
 	
-	/**
-	 * @param $database
-	 */
-	private function persistDatabase($database) : void {
+	private function persistDatabase(array $database): void {
 		file_put_contents(self::DATABASE_PATH, json_encode($database));
 	}
 	
@@ -35,9 +42,6 @@ class ChildRepository {
 		file_put_contents(self::DATABASE_PATH, json_encode([]));
 	}
 	
-	/**
-	 * @return bool
-	 */
 	private function databaseFileExists(): bool {
 		return is_file(self::DATABASE_PATH);
 	}
