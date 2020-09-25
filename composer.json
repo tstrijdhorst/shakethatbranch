@@ -1,0 +1,15 @@
+{
+    "name": "tstrijdhorst/shakethatbranch",
+    "description": "Manage git branch hierarchies with ease",
+    "type": "project",
+    "require": {
+        "symfony/console": "^5.1"
+    },
+    "license": "propietary",
+    "authors": [
+        {
+            "name": "Tim Strijdhorst",
+            "email": "tim@strijdhorst.me"
+        }
+    ]
+}
