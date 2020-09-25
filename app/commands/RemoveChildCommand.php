@@ -9,8 +9,8 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class AddChildCommand extends Command {
-	protected static $defaultName = 'add-child';
+class RemoveChildCommand extends Command {
+	protected static $defaultName = 'remove-child';
 	/**
 	 * @var IGit
 	 */
@@ -29,7 +29,7 @@ class AddChildCommand extends Command {
 	protected function configure() {
 		parent::configure();
 		
-		$this->setDescription('Adds the given branch-name as a child of the current branch');
+		$this->setDescription('Removes the given branch-name as a child of the current branch');
 		$this->addArgument('branchName', InputArgument::REQUIRED, 'The name of the childbranch');
 	}
 	
@@ -37,13 +37,8 @@ class AddChildCommand extends Command {
 		$currentBranchName = $this->gitRepository->getCurrentBranchName();
 		$childBranchName   = $input->getArgument('branchName');
 		
-		if ($currentBranchName === $childBranchName) {
-			$output->writeln('A branch cannot be a child of itself.');
-			return Command::FAILURE;
-		}
-		
-		if ($this->childRepository->hasChild($currentBranchName, $childBranchName)) {
-			$output->writeln('That branch is already a child of the current branch.');
+		if (!$this->childRepository->hasChild($currentBranchName, $childBranchName)) {
+			$output->writeln('That branch is not a child of the current branch.');
 			return Command::FAILURE;
 		}
 		
@@ -52,7 +47,7 @@ class AddChildCommand extends Command {
 			return Command::FAILURE;
 		}
 		
-		$this->childRepository->addChild($currentBranchName, $childBranchName);
+		$this->childRepository->removeChild($currentBranchName, $childBranchName);
 		
 		return Command::SUCCESS;
 	}

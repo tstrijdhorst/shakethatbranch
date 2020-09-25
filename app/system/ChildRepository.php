@@ -19,6 +19,12 @@ class ChildRepository {
 		$this->persistDatabase($database);
 	}
 	
+	public function removeChild(string $parentBranchName, string $childBranchName) : void {
+		$database = $this->getDatabase();
+		unset($database[$parentBranchName][array_search($childBranchName, $database[$parentBranchName])]);
+		$this->persistDatabase($database);
+	}
+	
 	public function hasChild(string $parentBranchName, string $childBranchName): bool {
 		$database = $this->getDatabase();
 		
