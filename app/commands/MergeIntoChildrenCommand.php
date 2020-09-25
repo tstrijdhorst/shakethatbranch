@@ -35,9 +35,14 @@ class MergeIntoChildrenCommand extends Command {
 	protected function execute(InputInterface $input, OutputInterface $output) {
 		$currentBranchName = $this->gitRepository->getCurrentBranchName();
 		
-		foreach($this->childRepository->findChildren($currentBranchName) as $childBranchName) {
-			$this->gitRepository->checkout($childBranchName);
-			$this->gitRepository->merge($currentBranchName);
+		try {
+			foreach($this->childRepository->findChildren($currentBranchName) as $childBranchName) {
+				$this->gitRepository->checkout($childBranchName);
+				$this->gitRepository->merge($currentBranchName);
+			}
+		}
+		finally {
+			$this->gitRepository->checkout($currentBranchName);
 		}
 		
 		return Command::SUCCESS;
