@@ -2,9 +2,9 @@
 
 namespace shakethatbranch\validators;
 
-use shakethatbranch\system\ChildRepository;
-use shakethatbranch\system\STBException;
-use shakethatbranch\system\ValidationException;
+use shakethatbranch\repositories\ChildRepository;
+use shakethatbranch\exceptions\STBException;
+use shakethatbranch\exceptions\ValidationException;
 
 class ValidateDatabaseInitialized {
 	/**

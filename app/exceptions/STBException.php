@@ -1,6 +1,6 @@
 <?php
 
-namespace shakethatbranch\system;
+namespace shakethatbranch\exceptions;
 
 class STBException extends \Exception {
 	

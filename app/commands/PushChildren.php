@@ -3,7 +3,7 @@
 namespace shakethatbranch\commands;
 
 use Cz\Git\IGit;
-use shakethatbranch\system\ChildRepository;
+use shakethatbranch\repositories\ChildRepository;
 use shakethatbranch\validators\ValidateDatabaseInitialized;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;

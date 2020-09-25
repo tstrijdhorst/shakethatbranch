@@ -1,6 +1,6 @@
 <?php
 
-namespace shakethatbranch\system;
+namespace shakethatbranch\repositories;
 
 class ChildRepository {
 	const DATABASE_FILENAME = 'db.json';

@@ -7,7 +7,7 @@ use shakethatbranch\commands\ListChildrenCommand;
 use shakethatbranch\commands\MergeIntoChildrenCommand;
 use shakethatbranch\commands\PushChildren;
 use shakethatbranch\commands\RemoveChildCommand;
-use shakethatbranch\system\ChildRepository;
+use shakethatbranch\repositories\ChildRepository;
 use Symfony\Component\Console\Application;
 
 require_once __DIR__.'/vendor/autoload.php';
