@@ -12,7 +12,7 @@ use Symfony\Component\Console\Application;
 
 require_once __DIR__.'/vendor/autoload.php';
 
-$gitRepository   = new GitRepository(__DIR__);
+$gitRepository   = new GitRepository(getcwd());
 $childRepository = new ChildRepository($gitRepository->getRepositoryPath());
 
 $application = new Application();
