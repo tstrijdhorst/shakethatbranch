@@ -20,8 +20,8 @@ class RemoveChildCommand extends Command {
 	 */
 	private ChildRepository $childRepository;
 	
-	public function __construct(string $name = null, IGit $gitRepository, ChildRepository $childRepository) {
-		parent::__construct($name);
+	public function __construct(IGit $gitRepository, ChildRepository $childRepository) {
+		parent::__construct();
 		$this->gitRepository   = $gitRepository;
 		$this->childRepository = $childRepository;
 	}

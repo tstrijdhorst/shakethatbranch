@@ -11,8 +11,8 @@ require_once __DIR__.'/vendor/autoload.php';
 $gitRepository   = new GitRepository(__DIR__);
 $childRepository = new ChildRepository();
 
-$addChildCommand    = new AddChildCommand(null, $gitRepository, $childRepository);
-$removeChildCommand = new RemoveChildCommand(null, $gitRepository, $childRepository);
+$addChildCommand    = new AddChildCommand($gitRepository, $childRepository);
+$removeChildCommand = new RemoveChildCommand($gitRepository, $childRepository);
 
 $application = new Application();
 $application->addCommands([$addChildCommand, $removeChildCommand]);
