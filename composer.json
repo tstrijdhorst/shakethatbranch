@@ -4,7 +4,8 @@
     "type": "project",
     "require": {
         "symfony/console": "^5.1",
-        "czproject/git-php": "^3.18"
+        "czproject/git-php": "^3.18",
+        "ext-json": "*"
     },
     "autoload": {
         "psr-4": {
