@@ -11,15 +11,11 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class PushChildren extends Command {
-	protected static $defaultName = 'push-children';
-	/**
-	 * @var IGit
-	 */
-	private $gitRepository;
-	/**
-	 * @var ChildRepository
-	 */
+class Push extends Command {
+	protected static $defaultName = 'push';
+	/** @var IGit */
+	private IGit $gitRepository;
+	/** @var ChildRepository */
 	private ChildRepository $childRepository;
 	
 	public function __construct(IGit $gitRepository, ChildRepository $childRepository) {
@@ -38,29 +34,34 @@ class PushChildren extends Command {
 	protected function execute(InputInterface $input, OutputInterface $output) {
 		ValidateDatabaseInitialized::create($this->childRepository)->validate();
 		
-		$this->pushChildren($this->gitRepository->getCurrentBranchName(), $input->hasOption('recursive'));
+		$currentBranchName = $this->gitRepository->getCurrentBranchName();
+		$this->gitRepository->checkout($currentBranchName);
+		$this->gitRepository->push();
+		
+		if ($input->hasOption('recursive')) {
+			$this->pushChildren($currentBranchName);
+		}
 		
 		return Command::SUCCESS;
 	}
 	
 	/**
-	 * @param string $currentBranchName
-	 * @param bool   $recursive
+	 * @param string $branch
 	 * @throws \Cz\Git\GitException
 	 */
-	protected function pushChildren(string $currentBranchName, bool $recursive = false): void {
+	protected function pushChildren(string $branch): void {
 		try {
-			foreach ($this->childRepository->findChildren($currentBranchName) as $childBranchName) {
+			foreach ($this->childRepository->findChildren($branch) as $childBranchName) {
 				$this->gitRepository->checkout($childBranchName);
 				$this->gitRepository->push();
 				
-				if ($recursive && $this->childRepository->hasAnyChildren($childBranchName)) {
-					$this->pushChildren($childBranchName, true);
+				if ($this->childRepository->hasAnyChildren($childBranchName)) {
+					$this->pushChildren($childBranchName);
 				}
 			}
 		}
 		finally {
-			$this->gitRepository->checkout($currentBranchName);
+			$this->gitRepository->checkout($branch);
 		}
 	}
 }

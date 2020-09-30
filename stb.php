@@ -5,7 +5,7 @@ use shakethatbranch\commands\AddChildCommand;
 use shakethatbranch\commands\InitCommand;
 use shakethatbranch\commands\ListChildrenCommand;
 use shakethatbranch\commands\MergeIntoChildrenCommand;
-use shakethatbranch\commands\PushChildren;
+use shakethatbranch\commands\Push;
 use shakethatbranch\commands\RemoveChildCommand;
 use shakethatbranch\repositories\ChildRepository;
 use Symfony\Component\Console\Application;
@@ -24,7 +24,7 @@ $application->addCommands(
 		new RemoveChildCommand($gitRepository, $childRepository),
 		new ListChildrenCommand($gitRepository, $childRepository),
 		new MergeIntoChildrenCommand($gitRepository, $childRepository),
-		new PushChildren($gitRepository, $childRepository),
+		new Push($gitRepository, $childRepository),
 	]
 );
 $application->run();

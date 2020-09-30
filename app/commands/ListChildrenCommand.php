@@ -12,13 +12,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ListChildrenCommand extends Command {
 	protected static $defaultName = 'list-children';
-	/**
-	 * @var IGit
-	 */
-	private $gitRepository;
-	/**
-	 * @var ChildRepository
-	 */
+	/** @var IGit */
+	private IGit $gitRepository;
+	/** @var ChildRepository */
 	private ChildRepository $childRepository;
 	
 	public function __construct(IGit $gitRepository, ChildRepository $childRepository) {

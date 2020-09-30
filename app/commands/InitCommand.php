@@ -10,13 +10,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class InitCommand extends Command {
 	protected static $defaultName = 'init';
-	/**
-	 * @var IGit
-	 */
-	private $gitRepository;
-	/**
-	 * @var ChildRepository
-	 */
+	/** @var IGit */
+	private IGit $gitRepository;
+	/** @var ChildRepository */
 	private ChildRepository $childRepository;
 	
 	public function __construct(IGit $gitRepository, ChildRepository $childRepository) {

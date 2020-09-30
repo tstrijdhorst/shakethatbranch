@@ -12,13 +12,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class RemoveChildCommand extends Command {
 	protected static $defaultName = 'remove-child';
-	/**
-	 * @var IGit
-	 */
-	private $gitRepository;
-	/**
-	 * @var ChildRepository
-	 */
+	/** @var IGit */
+	private IGit $gitRepository;
+	/** @var ChildRepository */
 	private ChildRepository $childRepository;
 	
 	public function __construct(IGit $gitRepository, ChildRepository $childRepository) {
