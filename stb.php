@@ -12,8 +12,15 @@ use Symfony\Component\Console\Application;
 
 require_once __DIR__.'/vendor/autoload.php';
 
-//@todo throw exception if the current directory is not a git initialized directory
-$gitRepository   = new GitRepository(getcwd());
+$gitRepository = new GitRepository(getcwd());
+try {
+	$gitRepository->getBranches();
+}
+catch (\Exception $e) {
+	//An error here will trigger git to output `fatal: not a git repository`, this should be obvious enough
+	exit(1);
+}
+
 $childRepository = new ChildRepository($gitRepository->getRepositoryPath());
 
 $application = new Application();
