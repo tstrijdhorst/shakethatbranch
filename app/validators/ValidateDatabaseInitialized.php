@@ -24,7 +24,7 @@ class ValidateDatabaseInitialized {
 		if (!$this->childRepository->databaseFileExists()) {
 			throw new class extends ValidationException {
 				public function __construct() {
-					parent::__construct('Not initialized');
+					parent::__construct('No stb repository initialized. Please run `init` command first.');
 				}
 			};
 		}
