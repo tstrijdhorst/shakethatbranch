@@ -8,6 +8,7 @@ use shakethatbranch\validators\ValidateDatabaseInitialized;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class AddChildCommand extends Command {
@@ -26,6 +27,7 @@ class AddChildCommand extends Command {
 		
 		$this->setDescription('Adds the given branch-name as a child of the current branch');
 		$this->addArgument('branchName', InputArgument::REQUIRED, 'The name of the childbranch');
+		$this->addOption('allow-master', InputOption::VALUE_NONE, 'Allow to set master as a child of the current branch (dangerous).');
 		$this->setAliases(['add', 'a']);
 	}
 	
@@ -41,6 +43,11 @@ class AddChildCommand extends Command {
 		
 		if ($currentBranchName === $childBranchName) {
 			$output->writeln('A branch cannot be a child of itself.');
+			return Command::FAILURE;
+		}
+		
+		if ($childBranchName === 'master' && !$input->getOption('allow-master')) {
+			$output->writeln('Cannot add `master` as a child of this branch. Use `--allow-master` if you are really sure you want this.');
 			return Command::FAILURE;
 		}
 		
