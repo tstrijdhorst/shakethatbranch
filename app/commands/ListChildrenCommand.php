@@ -27,6 +27,7 @@ class ListChildrenCommand extends Command {
 		parent::configure();
 		
 		$this->setDescription('Lists the children of the current branch');
+		$this->setAliases(['list', 'l']);
 	}
 	
 	protected function execute(InputInterface $input, OutputInterface $output) {

@@ -1,4 +1,6 @@
-<?php
+<?php /** @noinspection PhpUnhandledExceptionInspection */
+
+/** @noinspection PhpMissingFieldTypeInspection */
 
 namespace shakethatbranch\commands;
 
@@ -6,7 +8,6 @@ use Cz\Git\IGit;
 use shakethatbranch\repositories\ChildRepository;
 use shakethatbranch\validators\ValidateDatabaseInitialized;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -29,6 +30,7 @@ class MergeIntoChildrenCommand extends Command {
 		
 		$this->setDescription('Merges the current branch into it\'s children');
 		$this->addOption('recursive',['r'],InputOption::VALUE_NONE, 'Merge children of children');
+		$this->setAliases(['merge', 'm']);
 	}
 	
 	protected function execute(InputInterface $input, OutputInterface $output) {

@@ -27,8 +27,9 @@ class Push extends Command {
 	protected function configure() {
 		parent::configure();
 		
-		$this->setDescription('Pushes all the children to origin');
-		$this->addOption('recursive',['r'],InputOption::VALUE_NONE, 'Push children of children');
+		$this->setDescription('Push the current branch to origin');
+		$this->addOption('recursive',['r'],InputOption::VALUE_NONE, 'Push children and children of children');
+		$this->setAliases(['p']);
 	}
 	
 	protected function execute(InputInterface $input, OutputInterface $output) {

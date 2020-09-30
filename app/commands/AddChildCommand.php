@@ -28,6 +28,7 @@ class AddChildCommand extends Command {
 		
 		$this->setDescription('Adds the given branch-name as a child of the current branch');
 		$this->addArgument('branchName', InputArgument::REQUIRED, 'The name of the childbranch');
+		$this->setAliases(['add', 'a']);
 	}
 	
 	protected function execute(InputInterface $input, OutputInterface $output) {
