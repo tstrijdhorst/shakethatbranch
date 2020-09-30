@@ -1,6 +1,5 @@
 <?php
 
-use Cz\Git\GitRepository;
 use shakethatbranch\commands\AddChildCommand;
 use shakethatbranch\commands\InitCommand;
 use shakethatbranch\commands\ListChildrenCommand;
@@ -8,6 +7,7 @@ use shakethatbranch\commands\MergeIntoChildrenCommand;
 use shakethatbranch\commands\Push;
 use shakethatbranch\commands\RemoveChildCommand;
 use shakethatbranch\repositories\ChildRepository;
+use shakethatbranch\system\GitRepository;
 use Symfony\Component\Console\Application;
 
 require_once __DIR__.'/vendor/autoload.php';

@@ -2,8 +2,8 @@
 
 namespace shakethatbranch\commands;
 
-use Cz\Git\IGit;
 use shakethatbranch\repositories\ChildRepository;
+use shakethatbranch\system\GitRepository;
 use shakethatbranch\validators\ValidateDatabaseInitialized;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -12,12 +12,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class RemoveChildCommand extends Command {
 	protected static $defaultName = 'remove-child';
-	/** @var IGit */
-	private IGit $gitRepository;
-	/** @var ChildRepository */
+	private GitRepository $gitRepository;
 	private ChildRepository $childRepository;
 	
-	public function __construct(IGit $gitRepository, ChildRepository $childRepository) {
+	public function __construct(GitRepository $gitRepository, ChildRepository $childRepository) {
 		parent::__construct();
 		$this->gitRepository   = $gitRepository;
 		$this->childRepository = $childRepository;
@@ -36,6 +34,10 @@ class RemoveChildCommand extends Command {
 		
 		$currentBranchName = $this->gitRepository->getCurrentBranchName();
 		$childBranchName   = $input->getArgument('branchName');
+		
+		if ($childBranchName === '-') {
+			$childBranchName = $this->gitRepository->getPreviousBranchName();
+		}
 		
 		if (!$this->childRepository->hasChild($currentBranchName, $childBranchName)) {
 			$output->writeln('That branch is not a child of the current branch.');
