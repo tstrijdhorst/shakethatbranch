@@ -34,6 +34,7 @@ class InitCommand extends Command {
 		}
 		
 		$this->childRepository->initializeDatabase();
+		$output->writeln('Initialized stb repository in '.$this->childRepository->getDatabasePath());
 		
 		return Command::SUCCESS;
 	}

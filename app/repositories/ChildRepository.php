@@ -60,6 +60,10 @@ class ChildRepository {
 		return is_file($this->getDatabasePath());
 	}
 	
+	public function getDatabasePath() {
+		return $this->gitDirectory.'/.git/'.self::DATABASE_FILENAME;
+	}
+	
 	private function getDatabase(): array {
 		$json = file_get_contents($this->getDatabasePath());
 		return json_decode($json, true);
@@ -67,9 +71,5 @@ class ChildRepository {
 	
 	private function persistDatabase(array $database): void {
 		file_put_contents($this->getDatabasePath(), json_encode($database));
-	}
-	
-	private function getDatabasePath() {
-		return $this->gitDirectory.'/.git/'.self::DATABASE_FILENAME;
 	}
 }
