@@ -3,7 +3,7 @@
 namespace shakethatbranch\repositories;
 
 class ChildRepository {
-	const DATABASE_FILENAME = 'db.json';
+	const DATABASE_FILENAME = 'stb.json';
 	private string $gitDirectory;
 	
 	public function __construct(string $gitDirectory) {
