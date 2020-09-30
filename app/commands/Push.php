@@ -38,7 +38,7 @@ class Push extends Command {
 		$this->gitRepository->checkout($currentBranchName);
 		$this->gitRepository->push();
 		
-		if ($input->hasOption('recursive')) {
+		if ($input->getOption('recursive')) {
 			$this->pushChildren($currentBranchName);
 		}
 		

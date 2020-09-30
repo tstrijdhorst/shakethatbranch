@@ -33,7 +33,7 @@ class MergeIntoChildrenCommand extends Command {
 	
 	protected function execute(InputInterface $input, OutputInterface $output) {
 		$currentBranchName = $this->gitRepository->getCurrentBranchName();
-		$this->mergeChildren($currentBranchName, $input->hasOption('recursive'));
+		$this->mergeChildren($currentBranchName, $input->getOption('recursive'));
 		
 		return Command::SUCCESS;
 	}
