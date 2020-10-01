@@ -27,6 +27,6 @@ git add child11
 git checkout parent
 echo "test" > testfile
 git commit -ma "test commit"
-stb merge-into-children -r
+stb merge-into-children -r #-r means recursive, so merge into children of children
 git log #You will now see that the HEAD of <parent, child1, child11> is all set to the last commit
 ```
