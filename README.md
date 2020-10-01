@@ -10,7 +10,7 @@ This tool fixes that by letting you define childbranches for a git branch and gi
 Use the `stb` command to see all available commands and their flags.
 
 ### Installation
-* install php > 7.0
+* install php > 7.4
 
 #### Repository
 
