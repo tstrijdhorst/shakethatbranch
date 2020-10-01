@@ -49,3 +49,8 @@ git commit -m "commit2"
 stb merge-into-children -r    #-r means recursive, so merge into children of children
 git log                       #You will now see that (HEAD -> parent, child11, child1)
 ```
+
+
+```
+stb push -r                   #if you have an origin set this will push parent, child1 and child11
+```
