@@ -9,6 +9,13 @@ This tool fixes that by letting you define childbranches for a git branch and gi
 ## Quick Start:
 Use the `stb` command to see all available commands and their flags.
 
+### Installation
+
+* install php > 7.0
+* clone this repository
+* add an alias to your shell like `alias stb="php /home/tim/repositories/shakethatbranch/stb.php"`
+* use `stb` command wherever you want
+
 ### Example usage
 
 Create a parent branch, add a child branch and give that branch a child as well.  
