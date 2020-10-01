@@ -10,11 +10,19 @@ This tool fixes that by letting you define childbranches for a git branch and gi
 Use the `stb` command to see all available commands and their flags.
 
 ### Installation
-
 * install php > 7.0
+
+#### Repository
+
 * clone this repository
 * add an alias to your shell like `alias stb="php /home/tim/repositories/shakethatbranch/stb.php"`
 * use `stb` command wherever you want
+
+#### PHAR
+
+* download phar file from releases on github
+* make phar file executable `chmod u+x stb.phar`
+* place phar file in your $PATH
 
 ### Example usage
 
