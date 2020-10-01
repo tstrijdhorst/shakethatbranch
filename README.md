@@ -47,7 +47,7 @@ echo "test12" > testfile      #change the file to make a new commit
 git add testfile
 git commit -m "commit2"        
 stb merge-into-children -r    #-r means recursive, so merge into children of children
-git log                       #You will now see that (HEAD -> parent, child11, child1)
+git log                       #you will now see that (HEAD -> parent, child11, child1)
 ```
 
 

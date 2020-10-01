@@ -28,7 +28,7 @@ class AddChildCommand extends Command {
 		$this->setDescription('Adds the given branch-name as a child of the current branch');
 		$this->addArgument('branchName', InputArgument::REQUIRED, 'The name of the childbranch');
 		$this->addOption('allow-master', 'm', InputOption::VALUE_NONE, 'Allow to set master as a child of the current branch (dangerous).');
-		$this->setAliases(['add', 'a']);
+		$this->setAliases(['a']);
 	}
 	
 	protected function execute(InputInterface $input, OutputInterface $output) {

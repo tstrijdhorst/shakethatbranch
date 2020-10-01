@@ -26,7 +26,7 @@ class MergeIntoChildrenCommand extends Command {
 		
 		$this->setDescription('Merges the current branch into it\'s children');
 		$this->addOption('recursive',['r'],InputOption::VALUE_NONE, 'Merge children of children');
-		$this->setAliases(['merge', 'm']);
+		$this->setAliases(['m']);
 	}
 	
 	protected function execute(InputInterface $input, OutputInterface $output) {

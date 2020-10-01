@@ -26,7 +26,7 @@ class RemoveChildCommand extends Command {
 		
 		$this->setDescription('Removes the given branch-name as a child of the current branch');
 		$this->addArgument('branchName', InputArgument::REQUIRED, 'The name of the childbranch');
-		$this->setAliases(['remove', 'r']);
+		$this->setAliases(['r']);
 	}
 	
 	protected function execute(InputInterface $input, OutputInterface $output) {
