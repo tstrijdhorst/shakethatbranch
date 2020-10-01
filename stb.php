@@ -4,7 +4,7 @@ use shakethatbranch\commands\AddChildCommand;
 use shakethatbranch\commands\InitCommand;
 use shakethatbranch\commands\ListChildrenCommand;
 use shakethatbranch\commands\MergeIntoChildrenCommand;
-use shakethatbranch\commands\Push;
+use shakethatbranch\commands\PushCommand;
 use shakethatbranch\commands\RemoveChildCommand;
 use shakethatbranch\exceptions\GitRepositoryNotInitializedException;
 use shakethatbranch\repositories\ChildRepository;
@@ -32,7 +32,7 @@ $application->addCommands(
 		new RemoveChildCommand($gitRepository, $childRepository),
 		new ListChildrenCommand($gitRepository, $childRepository),
 		new MergeIntoChildrenCommand($gitRepository, $childRepository),
-		new Push($gitRepository, $childRepository),
+		new PushCommand($gitRepository, $childRepository),
 	]
 );
 $application->run();

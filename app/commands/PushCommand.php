@@ -10,7 +10,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class Push extends Command {
+class PushCommand extends Command {
 	protected static $defaultName = 'push';
 	private GitRepository $gitRepository;
 	private ChildRepository $childRepository;
