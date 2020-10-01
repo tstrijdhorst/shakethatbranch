@@ -15,6 +15,7 @@ Use the `stb` command to see all available commands and their flags.
 #### Repository
 
 * clone this repository
+* run `composer install`
 * add an alias to your shell like `alias stb="php /home/tim/repositories/shakethatbranch/stb.php"`
 * use `stb` command wherever you want
 
