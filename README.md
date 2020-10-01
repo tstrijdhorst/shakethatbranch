@@ -25,15 +25,19 @@ So we have a tree hierarchy: Parent -> Child1 -> Child11
 git init
 stb init
 git checkout -b parent
-git checkout -b child1
-git checkout -b child11
+echo "test" > testfile        #create a new file to test with
+git add testfile
+git commit -m "commit1"    
+git checkout -b child1        #create childbranch 1
+git checkout -b child11       #create childbranch 1-1
 git checkout parent
-stb add child1
+stb add child1                #add child1 as child of parent
 git checkout child1
-git add child11
+git add child11               #add child11 as child of child1
 git checkout parent
-echo "test" > testfile
-git commit -ma "test commit"
-stb merge-into-children -r     #-r means recursive, so merge into children of children
-git log                        #You will now see that the HEAD of <parent, child1, child11> is all set to the last commit
+echo "test12" > testfile      #change the file to make a new commit
+git add testfile
+git commit -m "commit2"        
+stb merge-into-children -r    #-r means recursive, so merge into children of children
+git log                       #You will now see that (HEAD -> parent, child11, child1)
 ```
