@@ -6,6 +6,7 @@ use shakethatbranch\commands\ListChildrenCommand;
 use shakethatbranch\commands\MergeIntoChildrenCommand;
 use shakethatbranch\commands\Push;
 use shakethatbranch\commands\RemoveChildCommand;
+use shakethatbranch\exceptions\GitRepositoryNotInitializedException;
 use shakethatbranch\repositories\ChildRepository;
 use shakethatbranch\system\GitRepository;
 use Symfony\Component\Console\Application;
@@ -14,14 +15,14 @@ require_once __DIR__.'/vendor/autoload.php';
 
 $gitRepository = new GitRepository(getcwd());
 try {
-	$gitRepository->getBranches();
+	$gitRepository->getRepositoryRoot();
 }
-catch (\Exception $e) {
-	//An error here will trigger git to output `fatal: not a git repository`, this should be obvious enough
+catch (GitRepositoryNotInitializedException $e) {
+	echo 'Git repository not initialized, please run `git init`'.PHP_EOL;
 	exit(1);
 }
 
-$childRepository = new ChildRepository($gitRepository->getRepositoryPath());
+$childRepository = new ChildRepository($gitRepository->getRepositoryRoot());
 
 $application = new Application();
 $application->addCommands(

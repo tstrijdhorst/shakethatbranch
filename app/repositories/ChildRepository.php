@@ -18,7 +18,7 @@ class ChildRepository {
 		$this->persistDatabase($database);
 	}
 	
-	public function removeChild(string $parentBranchName, string $childBranchName) : void {
+	public function removeChild(string $parentBranchName, string $childBranchName): void {
 		$database = $this->getDatabase();
 		unset($database[$parentBranchName][array_search($childBranchName, $database[$parentBranchName])]);
 		$this->persistDatabase($database);
@@ -28,7 +28,7 @@ class ChildRepository {
 	 * @param string $parentBranchName
 	 * @return string[]
 	 */
-	public function findChildren(string $parentBranchName) : array {
+	public function findChildren(string $parentBranchName): array {
 		if (!$this->hasAnyChildren($parentBranchName)) {
 			return [];
 		}
@@ -36,7 +36,7 @@ class ChildRepository {
 		return $this->getDatabase()[$parentBranchName];
 	}
 	
-	public function hasAnyChildren(string $parentBranchName) : bool {
+	public function hasAnyChildren(string $parentBranchName): bool {
 		$database = $this->getDatabase();
 		
 		return isset($database[$parentBranchName]);
@@ -60,8 +60,8 @@ class ChildRepository {
 		return is_file($this->getDatabasePath());
 	}
 	
-	public function getDatabasePath() {
-		return $this->gitDirectory.'/.git/'.self::DATABASE_FILENAME;
+	public function getDatabasePath(): string {
+		return $this->gitDirectory.'/'.self::DATABASE_FILENAME;
 	}
 	
 	private function getDatabase(): array {
