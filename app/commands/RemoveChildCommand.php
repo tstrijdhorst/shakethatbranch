@@ -44,11 +44,6 @@ class RemoveChildCommand extends Command {
 			return Command::FAILURE;
 		}
 		
-		if (!in_array($childBranchName, $this->gitRepository->getLocalBranches())) {
-			$output->writeln('That is not a valid branch name.');
-			return Command::FAILURE;
-		}
-		
 		$this->childRepository->removeChild($currentBranchName, $childBranchName);
 		
 		return Command::SUCCESS;
