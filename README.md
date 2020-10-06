@@ -1,6 +1,8 @@
 # Shake That Branch
 ### Hierarchical branch management made easy
 
+_This project is currently in beta. Feedback is appreciated. Do not trust it with your life._
+
 Splitting up featurebranches into multiple PRs for easy reviewing is really nice. Except if you get a comment
 on the first PR then you need to merge and push those changes into it's children (and their children). This can become really cumbersome quite quickly.
 
