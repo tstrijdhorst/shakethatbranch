@@ -13,6 +13,10 @@ class GitRepository extends \Cz\Git\GitRepository {
 		return $matches['branchName'];
 	}
 	
+	public function branchExists($branchName): bool {
+		return in_array($branchName, $this->getBranches());
+	}
+	
 	/**
 	 * @throws GitRepositoryNotInitializedException
 	 */

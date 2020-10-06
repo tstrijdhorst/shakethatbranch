@@ -1,6 +1,7 @@
 <?php
 
 use shakethatbranch\commands\AddChildCommand;
+use shakethatbranch\commands\CreateChildCommand;
 use shakethatbranch\commands\InitCommand;
 use shakethatbranch\commands\ListChildrenCommand;
 use shakethatbranch\commands\MergeIntoChildrenCommand;
@@ -29,6 +30,7 @@ $application->addCommands(
 	[
 		new InitCommand($gitRepository, $childRepository),
 		new AddChildCommand($gitRepository, $childRepository),
+		new CreateChildCommand($gitRepository, $childRepository),
 		new RemoveChildCommand($gitRepository, $childRepository),
 		new ListChildrenCommand($gitRepository, $childRepository),
 		new MergeIntoChildrenCommand($gitRepository, $childRepository),
